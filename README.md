@@ -17,13 +17,14 @@ Use the `page` fixture to write a basic test.
 ```python
 # test_demo.py
 
-
 def test_baidu(page):
     page.get("https://www.baidu.com")
+    assert "百度一下" in page.get_title
 
 
 def test_bing(page):
     page.get("https://www.bing.com")
+    assert page.get_title == "Bing"
 
 ```
 
