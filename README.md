@@ -32,10 +32,14 @@ To run your tests, use pytest CLI.
 
 ````
 # Run tests (chrome by default)
-pytest
+> pytest
 
 # Run tests in a different browser (chrome, firefox, safari)
-pytest --browser chrome
-pytest --browser firefox
-pytest --browser safari
+> pytest --browser chrome
+> pytest --browser firefox
+> pytest --browser safari
+
+
+# pytest-html report 
+> pytest --html ./report.html
 ```
