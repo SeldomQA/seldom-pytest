@@ -24,7 +24,7 @@ setuptools.setup(
     include_package_data=True,
     install_requires=[
         "pytest-html>=3.0.0",
-        "poium>=1.0.0",
+        "poium>=1.0.2",
         "pytest",
         "pytest-base-url",
     ],
