@@ -23,7 +23,7 @@ setuptools.setup(
     packages=["pytest_seldom"],
     include_package_data=True,
     install_requires=[
-        "seldom>=2.2.1",
+        "pytest-html>=3.0.0",
         "poium>=1.0.0",
         "pytest",
         "pytest-base-url",
