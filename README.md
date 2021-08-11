@@ -30,7 +30,7 @@ def test_bing(page):
 
 To run your tests, use pytest CLI.
 
-````
+```
 # Run tests (chrome by default)
 > pytest
 
@@ -39,7 +39,13 @@ To run your tests, use pytest CLI.
 > pytest --browser firefox
 > pytest --browser safari
 
+# specify base-url 
+> pytest --base-url http://www.sample.com
 
 # pytest-html report 
 > pytest --html ./report.html
 ```
+
+[More usage](/test_sample)
+
+
