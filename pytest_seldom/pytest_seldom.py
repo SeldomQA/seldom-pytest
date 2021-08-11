@@ -19,6 +19,7 @@ from typing import Any, Callable, Dict, Generator, List, Optional
 
 import pytest
 from selenium import webdriver
+from poium import Page
 
 
 @pytest.fixture(scope="session")
@@ -35,10 +36,17 @@ def browser_type(browser_name: str):
 
 
 @pytest.fixture(scope="session")
-def page(browser_type, base_url: str):
+def browser(browser_type, base_url: str):
     page = browser_type
     yield page
     page.quit()
+
+
+@pytest.fixture(scope="session")
+def page(browser_type, base_url: str):
+    page = Page(browser_type)
+    yield page
+    browser_type.quit()
 
 
 @pytest.fixture(scope="session")

@@ -11,6 +11,6 @@ class BaiduPage(Page):
 
 
 @pytest.fixture(scope="module", autouse=True)
-def baidu_page(page):
-    return BaiduPage(page)
+def baidu_page(browser):
+    return BaiduPage(browser)
 
