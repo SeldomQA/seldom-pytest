@@ -20,6 +20,11 @@ from typing import Any, Callable, Dict, Generator, List, Optional
 import pytest
 from selenium import webdriver
 from poium import Page
+from poium.common import logging
+
+
+# close color log (poium>1.0.2)
+logging.colorLog = False
 
 
 @pytest.fixture(scope="session")
@@ -91,21 +96,24 @@ def pytest_html_results_table_row(report, cells):
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
-    pytest_html = item.config.pluginmanager.getplugin("html")
+    pytest_html = item.config.pluginmanager.getplugin('html')
     outcome = yield
     report = outcome.get_result()
     report.description = str(item.function.__doc__)
-    extra = getattr(report, "extra", [])
-    if report.when == "call":
+    extra = getattr(report, 'extra', [])
+    if report.when == 'call':
         feature_request = item.funcargs['request']
-        driver = feature_request.getfuncargvalue('browser')
-        img = driver.get_screenshot_as_base64()
-        # always add url to report
-        extra.append(pytest_html.extras.url("http://www.example.com/"))
+        driver = feature_request.getfixturevalue('browser')
         xfail = hasattr(report, "wasxfail")
         if (report.skipped and xfail) or (report.failed and not xfail):
             # only add additional html on failure
-            extra.append(pytest_html.extras.html("<div>Additional HTML{}</div>".format(str(img))))
+            img = driver.get_screenshot_as_base64()
+            html_screenshot = """
+            <div style="float: right;">
+              <img src="data:image/jpg;base64,{img}" style="width: 350px; float: right; border-style: solid; border-width: 3px; border-color: #fa5c7c;"/>
+            </div>
+            """.format(img=str(img))
+            extra.append(pytest_html.extras.html(html_screenshot))
         report.extra = extra
 
 
