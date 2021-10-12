@@ -21,6 +21,11 @@ import pytest
 from selenium import webdriver
 from poium import Page
 from poium.common import logging
+from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.microsoft import IEDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+from webdriver_manager.opera import OperaDriverManager
+from pytest_seldom.extend import ChromeDriverManager
 
 
 # close color log (poium>1.0.2)
@@ -30,13 +35,19 @@ logging.colorLog = False
 @pytest.fixture(scope="session")
 def browser_type(browser_name: str):
     if browser_name == "chrome" or browser_name == "gc":
-        driver = webdriver.Chrome()
+        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
     elif browser_name == "firefox" or browser_name == "ff":
-        driver = webdriver.Firefox()
+        driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
     elif browser_name == "safari":
         driver = webdriver.Safari()
+    elif browser_name == "ie":
+        driver = webdriver.Ie(executable_path=IEDriverManager().install())
+    elif browser_name == "edge":
+        driver = webdriver.Edge(executable_path=EdgeChromiumDriverManager().install())
+    elif browser_name == "opera":
+        driver = webdriver.Opera(executable_path=OperaDriverManager().install())
     else:
-        driver = webdriver.Chrome()
+        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
     return driver
 
 
