@@ -27,6 +27,7 @@ setuptools.setup(
         "poium>=1.0.2",
         "pytest",
         "pytest-base-url",
+        "webdriver-manager>=3.5.0",
     ],
     entry_points={"pytest11": ["seldom = pytest_seldom.pytest_seldom"]},
     classifiers=[
