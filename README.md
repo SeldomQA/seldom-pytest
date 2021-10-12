@@ -9,6 +9,13 @@ seldom support pytest
 > pip install -U git+https://github.com/SeldomQA/seldom-pytest@main
 ```
 
+or
+
+```shell
+> git clone https://github.com/SeldomQA/seldom-pytest.git
+> cd seldom-pytest
+> python setup.py install
+```
 
 ## Example
 
