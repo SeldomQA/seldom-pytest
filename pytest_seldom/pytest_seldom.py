@@ -35,7 +35,9 @@ logging.colorLog = False
 @pytest.fixture(scope="session")
 def browser_type(browser_name: str):
     if browser_name == "chrome" or browser_name == "gc":
-        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
     elif browser_name == "firefox" or browser_name == "ff":
         driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
     elif browser_name == "safari":
@@ -47,7 +49,9 @@ def browser_type(browser_name: str):
     elif browser_name == "opera":
         driver = webdriver.Opera(executable_path=OperaDriverManager().install())
     else:
-        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
     return driver
 
 
