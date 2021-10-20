@@ -23,10 +23,10 @@ setuptools.setup(
     packages=["pytest_seldom"],
     include_package_data=True,
     install_requires=[
-        "pytest-html>=3.0.0",
-        "poium>=1.0.2",
         "pytest",
+        "pytest-html>=3.0.0",
         "pytest-base-url",
+        "poium>=1.0.3",
         "webdriver-manager>=3.5.0",
     ],
     entry_points={"pytest11": ["seldom = pytest_seldom.pytest_seldom"]},
